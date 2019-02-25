@@ -7,6 +7,8 @@ import { getTodoList } from '../../actions';
 import { TodoListItem } from '../../components';
 import { List, Loading, LoadingText, Screen } from './styles';
 
+const loadingText = `L O A D I N G . . .`;
+
 class TodoList extends Component {
   static propTypes = {
     onPress: PropTypes.func.isRequired,
@@ -33,8 +35,6 @@ class TodoList extends Component {
         todoListItems
       }
     } = this.props;
-
-    const loadingText = `L O A D I N G . . .`;
 
     return (
       <Screen>

@@ -3,6 +3,8 @@ import Swipeout from 'react-native-swipeout';
 import PropTypes from 'prop-types';
 import { Item, ItemText } from './styles';
 
+const itemBackgroundColor = `white`;
+
 export class TodoListItem extends Component {
   static propTypes = {
     item: PropTypes.shape({
@@ -11,7 +13,8 @@ export class TodoListItem extends Component {
       text: PropTypes.string.isRequired
     }).isRequired,
     onPress: PropTypes.func.isRequired,
-    onSwipeLeft: PropTypes.func.isRequired
+    onSwipeLeft: PropTypes.func.isRequired,
+    swipeBtns: PropTypes.array.isRequired
   };
   static defaultProps = {
     item: {
@@ -20,8 +23,26 @@ export class TodoListItem extends Component {
       text: ''
     },
     onPress: () => {},
-    onSwipeLeft: () => {}
+    onSwipeLeft: () => {},
+    swipeBtns: []
   };
+
+  componentWillMount() {
+    const btnBackgroundColor = `red`;
+    const btnText = `Delete`;
+
+    const {
+      item: { id },
+      onSwipeLeft
+    } = this.props;
+
+    this.props.swipeBtns[0] = {
+      text: btnText,
+      backgroundColor: btnBackgroundColor,
+      underlayColor: itemBackgroundColor,
+      onPress: () => onSwipeLeft(id)
+    };
+  }
 
   render() {
     const {
@@ -31,25 +52,11 @@ export class TodoListItem extends Component {
         text
       },
       onPress,
-      onSwipeLeft
+      swipeBtns
     } = this.props;
 
-    const backgroundColor = `transparent`;
-    const btnBackgroundColor = `red`;
-    const btnText = `Delete`;
-    const underlayColor = `white`;
-
-    const swipeBtnDelete = {
-      text: btnText,
-      backgroundColor: btnBackgroundColor,
-      underlayColor,
-      onPress: () => onSwipeLeft(id)
-    };
-
-    const swipeBtns = [swipeBtnDelete];
-
     return (
-      <Swipeout right={swipeBtns} autoClose={true} backgroundColor={backgroundColor}>
+      <Swipeout right={swipeBtns} autoClose={true} backgroundColor={itemBackgroundColor}>
         <Item onPress={onPress}>
           <ItemText completed={completed}>{text}</ItemText>
         </Item>
