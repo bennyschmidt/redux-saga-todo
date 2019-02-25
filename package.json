@@ -2,7 +2,7 @@
   "name": "redux-saga-todo",
   "version": "0.1.0",
   "private": true,
-  "main": "index.js",
+  "main": "src/index.js",
   "dependencies": {
     "expo": "^32.0.0",
     "react": "16.5.0",
