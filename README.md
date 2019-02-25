@@ -7,3 +7,4 @@ Authored by [@exactchange](https://github.com/exactchange)
 ```
 yarn install && yarn start
 ```
+![React Native Redux Saga Example](http://www.bennyschmidt.com/cdn/gif/redux-saga-todo.gif)
