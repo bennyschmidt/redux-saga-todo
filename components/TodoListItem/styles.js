@@ -7,9 +7,9 @@ export const Item = styled.TouchableOpacity`
   width: ${Dimensions.get('screen').width};
   height: 80px;
   padding: 30px 20px;
-`
+`;
 
 export const ItemText = styled.Text`
   text-decoration: solid ${props => props.completed ? 'line-through' : 'none'};
   opacity: ${props => props.completed ? 0.75 : 1};
-`
+`;

@@ -9,21 +9,21 @@ export const Button = styled.TouchableOpacity`
   margin: 20px;
   background-color: blue;
   border-radius: 5px;
-`
+`;
 
 export const ButtonText = styled.Text`
   text-align: center;
   color: white;
   line-height: 58px;
   font-weight: bold;
-`
+`;
 
 export const Screen = styled.View`
   flex: 1;
   background-color: #fefefe;
   align-items: center;
   justify-content: flex-start;
-`
+`;
 
 export const TextBox = styled.TextInput`
   position: absolute;
@@ -36,4 +36,4 @@ export const TextBox = styled.TextInput`
   border-radius: 5px;
   border: 1px solid silver;
   font-size: 18;
-`
+`;
