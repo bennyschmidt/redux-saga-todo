@@ -1,8 +1,28 @@
 import React, { Component } from 'react';
 import Swipeout from 'react-native-swipeout';
+import PropTypes from 'prop-types';
 import { Item, ItemText } from './styles';
 
 export class TodoListItem extends Component {
+  static propTypes = {
+    item: PropTypes.shape({
+      completed: PropTypes.bool.isRequired,
+      id: PropTypes.number.isRequired,
+      text: PropTypes.string.isRequired
+    }).isRequired,
+    onPress: PropTypes.func.isRequired,
+    onSwipeLeft: PropTypes.func.isRequired
+  };
+  static defaultProps = {
+    item: {
+      completed: false,
+      id: -1,
+      text: ''
+    },
+    onPress: () => {},
+    onSwipeLeft: () => {}
+  };
+
   render() {
     const {
       item: {

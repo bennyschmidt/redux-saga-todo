@@ -1,11 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 import { addTodoListItem, removeTodoListItem, retrieveTodoListItems, toggleTodoListItem } from '../../actions';
 import { TodoListContainer } from '../TodoList';
 import { Button, ButtonText, Screen, TextBox } from './styles';
 
+const buttonText = `Add`;
+const placeholderText = `Add new item`;
+
 class App extends Component {
+  static propTypes = {
+    addTodoListItem: PropTypes.func.isRequired,
+    removeTodoListItem: PropTypes.func.isRequired,
+    retrieveTodoListItems: PropTypes.func.isRequired,
+    toggleTodoListItem: PropTypes.func.isRequired,
+    todoList: PropTypes.object.isRequired
+  };
+  static defaultProps = {
+    addTodoListItem: () => {},
+    removeTodoListItem: () => {},
+    retrieveTodoListItems: () => {},
+    toggleTodoListItem: () => {},
+    todoList: {}
+  };
+
   state = {
     textBoxValue: ''
   };
@@ -29,13 +48,15 @@ class App extends Component {
   };
 
   render() {
-    const buttonText = `Add`;
-    const placeholderText = `Add new item`;
     const { removeTodoListItem, toggleTodoListItem } = this.props;
 
     return (
       <Screen>
-        <TodoListContainer todoList={this.props.todoList} onPress={toggleTodoListItem} onSwipeLeft={removeTodoListItem} />
+        <TodoListContainer
+          todoList={this.props.todoList}
+          onPress={toggleTodoListItem}
+          onSwipeLeft={removeTodoListItem}
+        />
         <TextBox
           onChangeText={(textBoxValue) => this.setState({ textBoxValue })}
           placeholder={placeholderText}
@@ -63,7 +84,4 @@ const mapState = (state) => {
   return { todoList };
 };
 
-
-
 export const AppContainer = connect(mapState, mapDispatch)(App);
-

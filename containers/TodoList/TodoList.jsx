@@ -2,11 +2,25 @@ import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 import { getTodoList } from '../../actions';
 import { TodoListItem } from '../../components';
 import { List, Loading, LoadingText, Screen } from './styles';
 
 class TodoList extends Component {
+  static propTypes = {
+    onPress: PropTypes.func.isRequired,
+    onSwipeLeft: PropTypes.func.isRequired,
+    todoList: PropTypes.shape({
+      isLoading: PropTypes.bool.isRequired,
+      todoListItems: PropTypes.array.isRequired
+    }).isRequired
+  };
+  static defaultProps = {
+    onPress: () => {},
+    onSwipeLeft: () => {},
+    todoList: {}
+  };
 
   onPressListItem = item => (event) => this.props.onPress(item, event);
 
